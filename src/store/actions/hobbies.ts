@@ -1,34 +1,17 @@
 import {
   ADD_HOBBY,
   DELETE_HOBBY,
-  SET_HOBBIES
+  API_REQUEST,
+  SET_HOBBIES,
+  HobbiesActionTypes
 } from "../constants/action-types";
 import { Hobby } from "../../types";
+import { ThunkDispatch } from "redux-thunk";
+import axios from "axios";
+import { AnyAction } from "redux";
 
-interface FetchHobbiesAction {
-  type: typeof SET_HOBBIES;
-  payload: { hobbies: Hobby[] };
-}
 
-interface CreateHobbieAction {
-  type: typeof ADD_HOBBY;
-  payload: {
-    hobby: Hobby;
-  };
-}
-
-interface RemoveHobbieAction {
-  type: typeof DELETE_HOBBY;
-  payload: {
-    hobbyId: number;
-  };
-}
-
-export type HobbiesActionTypes =
-  | FetchHobbiesAction
-  | CreateHobbieAction
-  | RemoveHobbieAction;
-
+// Action Creators
 export const setHobbies = (hobbies: Hobby[]): HobbiesActionTypes => ({
   type: SET_HOBBIES,
   payload: {
@@ -50,3 +33,30 @@ export const removeHobby = (id: number): HobbiesActionTypes => ({
   }
 });
 
+
+// Thunk Actions
+export const fetchHobbies = (userId: number) => ({
+  type: API_REQUEST,
+  payload: {
+    url: `user/${userId}/hobbies`,
+    method: "GET",
+    onSuccess: setHobbies
+  }
+});
+
+export const createHobby = (hobby: Hobby) => ({
+  type: API_REQUEST,
+  payload: {
+    url: "hobbies",
+    method: "POST",
+    data: hobby,
+    onSuccess: addHobby
+  }
+});
+
+export const deleteHobby = (id: number): any => async (
+  dispatch: ThunkDispatch<{}, {}, AnyAction>
+): Promise<void> => {
+  await axios.delete(`http://localhost:4000/hobbies/${id}`);
+  dispatch(removeHobby(id));
+};

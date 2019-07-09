@@ -1,12 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
+import "./Header.scss";
+const Header: React.FunctionComponent<{}> = () => {
+  return (
+    <header>
+      <h2>User Hobbies</h2>
+    </header>
+  );
+};
 
-export interface IHeaderProps {
-}
-
-export function Header (props: IHeaderProps) {
-    return (
-      <div>
-        
-      </div>
-    );
-}
+export default Header;

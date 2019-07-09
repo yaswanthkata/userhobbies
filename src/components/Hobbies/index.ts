@@ -1,1 +1,2 @@
-export * from './Hobbies';
+export * from "./Hobbies";
+export * from "./HobbyTableRow";

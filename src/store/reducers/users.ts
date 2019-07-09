@@ -1,6 +1,6 @@
 import * as actionTypes from "../constants/action-types";
 import { User } from "../../types";
-import { UsersActionTypes } from "../actions/users";
+import { UsersActionTypes } from "../constants/action-types";
 
 export interface IUserState {
   readonly users: User[];

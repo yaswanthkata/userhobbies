@@ -1,7 +1,15 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers";
+import { usersReducer } from "./reducers/users";
+import { hobbiesReducer } from "./reducers/hobbies";
+import apiMiddleware from "./middleware/apiMiddleware";
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+  combineReducers({
+    users: usersReducer,
+    hobbies: hobbiesReducer
+  }),
+  applyMiddleware(thunk, apiMiddleware)
+);
 
 export default store;

@@ -1,0 +1,21 @@
+.user-hobbies-container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  .users-column {
+    flex: 1 0 0;
+  }
+  .hobbies-column {
+    flex: 2 0 0;
+    padding-left: 10px;
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .user-hobbies-container  {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
