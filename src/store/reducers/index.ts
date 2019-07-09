@@ -1,7 +1,14 @@
 import { combineReducers } from "redux";
-import { usersReducer } from "./users";
-import { hobbiesReducer } from "./hobbies";
+import { usersReducer, IUserState } from "./users";
+import { hobbiesReducer, IHobbyState } from "./hobbies";
 
-const rootReducer = combineReducers({users: usersReducer, hobbies: hobbiesReducer})
+export interface IApplicationState {
+  users: IUserState;
+  hobbies: IHobbyState;
+}
+const rootReducer = combineReducers<IApplicationState>({
+  users: usersReducer,
+  hobbies: hobbiesReducer
+});
 
 export default rootReducer;
