@@ -35,6 +35,11 @@ textarea {
   cursor: pointer;
 }
 
+button {
+  &:disabled {
+    opacity: 0.3;
+  }
+}
 .btn-green {
   @include button-bg($light-green);
 }

@@ -1,49 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { User } from "../../types";
 import "./Users.scss";
-import { UserItem } from "./UserItem";
+import UserListItem from "./UserListItem/UserListItem";
+import UserAddForm from "./UserAddForm/UserAddForm";
+
 interface UserProps {
   users: User[];
   onAdd(name: string): void;
   selectedUserId?: number;
-  onSelect(user: User): void;
+  selectUser(user: User): void;
 }
 export const Users = ({
   users,
   selectedUserId,
   onAdd,
-  onSelect
+  selectUser
 }: UserProps) => {
-  const [userName, setUserName] = useState("");
 
-  const addUser = () => {
+  const addUser = (userName: string) => {
     if (users.find(user => user.name === userName)) {
-      alert("User already exists");
+      window.alert("User already exists");
       return;
     }
     onAdd(userName);
-    setUserName("");
   };
 
   const onUserSelectionChanged = (user: User) => {
-    onSelect(user);
+    selectUser(user);
   };
 
   return (
     <div>
-      <div className="user-form">
-        <input
-          type="text"
-          placeholder="Enter user name"
-          value={userName}
-          onChange={({
-            target: { value }
-          }: React.ChangeEvent<HTMLInputElement>) => setUserName(value)}
-        />
-        <button className="btn btn-green" onClick={addUser}>
-          Add user
-        </button>
-      </div>
+      <UserAddForm onAdd={addUser} />
       {users.length === 0 ? (
         "No users"
       ) : (
@@ -54,7 +42,7 @@ export const Users = ({
               onClick={() => onUserSelectionChanged(user)}
               className={user.id === selectedUserId ? "selected" : ""}
             >
-            <UserItem {...user}/>
+              <UserListItem {...user} />
             </li>
           ))}
         </ul>

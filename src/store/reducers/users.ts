@@ -12,6 +12,7 @@ export const usersReducer = (
   state = intialUserState,
   action: UsersActionTypes
 ): IUserState => {
+    
   switch (action.type) {
     case actionTypes.SET_USERS: {
       return { ...state, users: [...action.payload.users] };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Hobby } from "../../types";
-import HobbyTableRow from "./HobbyTableRow";
+import HobbyTableRow from "./HobbyTableRow/HobbyTableRow";
 import "./Hobbies.scss";
 
 interface HobbiesProps {
@@ -13,8 +13,13 @@ const Hobbies = ({ hobbies, onAdd, onRemove }: HobbiesProps) => {
   const [hobbyName, setHobbyName] = useState("");
   const [year, setYear] = useState("");
   const [passion, setPassion] = useState("");
+  const [formValid, setFormValid] = useState(false);
 
   const addHobby = () => {
+
+    if(!hobbyName || hobbyName.trim.length===0){
+        setFormValid(false);
+    }
     if (
       hobbies.find(hobby => hobby.name === hobbyName) ||
       hobbyName.trim() === ""
@@ -31,6 +36,15 @@ const Hobbies = ({ hobbies, onAdd, onRemove }: HobbiesProps) => {
     };
 
     onAdd(newHobby);
+    resetForm();
+  };
+
+  const onHobbyNameChange = (value: string) => {
+    setHobbyName(value);
+    setFormValid(value.trim().length !== 0);
+}
+
+  const resetForm = () => {
     setHobbyName("");
     setYear("");
     setPassion("");
@@ -64,7 +78,7 @@ const Hobbies = ({ hobbies, onAdd, onRemove }: HobbiesProps) => {
           className="input-hobby"
           value={hobbyName}
           placeholder="Enter user hobby"
-          onChange={({ target: { value } }) => setHobbyName(value)}
+          onChange={({ target: { value } }) => onHobbyNameChange(value)}
         />
         <input
           value={year}
@@ -76,7 +90,7 @@ const Hobbies = ({ hobbies, onAdd, onRemove }: HobbiesProps) => {
             target: { value }
           }: React.ChangeEvent<HTMLInputElement>) => setYear(value)}
         />
-        <button className="btn btn-green" onClick={addHobby}>
+        <button className="btn btn-green" disabled={!formValid} onClick={addHobby}>
           Add Hobby
         </button>
       </div>

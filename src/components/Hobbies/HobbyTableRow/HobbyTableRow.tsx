@@ -1,5 +1,5 @@
 import React from "react";
-import { Hobby } from "../../types";
+import { Hobby } from "../../../types";
 
 interface IHobbyTableRowProps {
   hobby: Hobby;
@@ -7,7 +7,7 @@ interface IHobbyTableRowProps {
 }
 
 const HobbyTableRow = ({ hobby, onRemove }: IHobbyTableRowProps) => {
-  const getPassion = (level: number) => {
+  const getPassionDescription = (level: number) => {
     switch (level) {
       case 1:
         return "Low";
@@ -23,11 +23,13 @@ const HobbyTableRow = ({ hobby, onRemove }: IHobbyTableRowProps) => {
   };
   return (
     <tr>
-      <td>{hobby.passion && "Passion : " + getPassion(hobby.passion)}</td>
+      <td>
+        {hobby.passion && "Passion : " + getPassionDescription(hobby.passion)}
+      </td>
       <td>
         <h2>{hobby.name}</h2>
       </td>
-      <td>{"Since " + hobby.year}</td>
+      <td>{hobby.year && "Since " + hobby.year}</td>
       <td>
         <button
           className="btn btn-red"

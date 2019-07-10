@@ -1,15 +1,20 @@
 import * as React from "react";
 
-export interface IUserProps {
+interface IUserListItemProps {
   id: number;
   name: string;
 }
 
-export function UserItem({ id, name }: IUserProps) {
+const UserListItem: React.FunctionComponent<IUserListItemProps> = ({
+  id,
+  name
+}: IUserListItemProps) => {
   return (
     <div>
       <img src={"https://i.pravatar.cc/50?img=" + id} alt="avatar" />
       <h3 className="user-title"> {name}</h3>
     </div>
   );
-}
+};
+
+export default UserListItem;

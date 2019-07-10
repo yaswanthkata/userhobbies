@@ -13,6 +13,7 @@ export const hobbiesReducer = (
   action: any
 ): IHobbyState => {
   switch (action.type) {
+    
     case actionTypes.SET_HOBBIES: {
       return { ...state, hobbies: action.payload.hobbies };
     }

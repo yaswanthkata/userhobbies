@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { User, Hobby } from "../../types";
-import Users from "../Users/Users";
+import { Users } from "../Users";
 import Hobbies from "../Hobbies/Hobbies";
 import { Dispatch } from "redux";
 import { fetchUsers, createUser } from "../../store/actions/users";
@@ -22,10 +22,17 @@ export interface IUserHobbiesProps {
   addHobby: typeof createHobby;
 }
 
-class UserHobbies extends React.Component<IUserHobbiesProps> {
-  state = {
-    selectedUserId: -1
-  };
+export interface IUserHobbiesState {
+  selectedUserId: number;
+}
+// Container component connecting to the store
+class UserHobbies extends React.Component<IUserHobbiesProps,IUserHobbiesState> {
+  constructor(props: IUserHobbiesProps) {
+    super(props);
+    this.state = {
+      selectedUserId: -1
+    };
+  }
 
   componentDidMount() {
     this.props.fetchUsers();
@@ -51,7 +58,7 @@ class UserHobbies extends React.Component<IUserHobbiesProps> {
             users={users}
             selectedUserId={selectedUserId}
             onAdd={addUser}
-            onSelect={this.selectUser}
+            selectUser={this.selectUser}
           />
         </div>
         <div className="hobbies-column">

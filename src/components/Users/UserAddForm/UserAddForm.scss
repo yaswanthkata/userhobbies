@@ -1,0 +1,13 @@
+.user-form {
+  display: flex;
+  input {
+    flex: 3 0 0;
+  }
+  button {
+    flex: 1 0 0;
+
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
+}
