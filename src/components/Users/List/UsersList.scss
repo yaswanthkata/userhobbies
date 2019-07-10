@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import "../../../styles/variables";
 .users-list {
     list-style-type: none;
     height: 400px;
@@ -26,3 +26,8 @@
       }
   }
  
+  @media screen and (max-width: 600px){
+    .users-list {
+      height: 200px;
+    }
+  }

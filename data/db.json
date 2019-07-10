@@ -1,4 +1,25 @@
 {
-  "users": [],
-  "hobbies": []
+  "users": [
+    {
+      "name": "sss",
+      "id": 1
+    },
+    {
+      "name": "qqqq",
+      "id": 2
+    },
+    {
+      "name": "asd",
+      "id": 3
+    }
+  ],
+  "hobbies": [
+    {
+      "id": 1,
+      "name": "aa",
+      "passion": 1,
+      "year": 1234,
+      "userId": 2
+    }
+  ]
 }

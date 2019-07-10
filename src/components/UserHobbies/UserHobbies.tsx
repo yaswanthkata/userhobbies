@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { User, Hobby } from "../../types";
 import { Users } from "../Users";
-import Hobbies from "../Hobbies/Hobbies";
 import { Dispatch } from "redux";
 import { fetchUsers, createUser } from "../../store/actions/users";
 import "./UserHobbies.scss";
@@ -11,6 +10,7 @@ import {
   deleteHobby,
   fetchHobbies
 } from "../../store/actions/hobbies";
+import Hobbies from "../Hobbies";
 
 export interface IUserHobbiesProps {
   users: User[];

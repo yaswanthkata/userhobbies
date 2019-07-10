@@ -9,7 +9,7 @@ import { Hobby } from "../../types";
 import { ThunkDispatch } from "redux-thunk";
 import axios from "axios";
 import { AnyAction } from "redux";
-
+import { config } from "../../config";
 
 // Action Creators
 export const setHobbies = (hobbies: Hobby[]): HobbiesActionTypes => ({
@@ -32,7 +32,6 @@ export const removeHobby = (id: number): HobbiesActionTypes => ({
     hobbyId: id
   }
 });
-
 
 // Thunk Actions
 export const fetchHobbies = (userId: number) => ({
@@ -57,6 +56,6 @@ export const createHobby = (hobby: Hobby) => ({
 export const deleteHobby = (id: number): any => async (
   dispatch: ThunkDispatch<{}, {}, AnyAction>
 ): Promise<void> => {
-  await axios.delete(`http://localhost:4000/hobbies/${id}`);
+  await axios.delete(config.API_URL + `hobbies/${id}`);
   dispatch(removeHobby(id));
 };

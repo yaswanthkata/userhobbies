@@ -12,6 +12,7 @@ const UserAddForm: React.FunctionComponent<IUserAddFormProps> = ({ onAdd }: IUse
 
     const addUser = () => {
         onAdd(userName);
+        setUserName('');
     };
 
     const handleUserInput = (value: string) => {

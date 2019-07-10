@@ -1,0 +1,14 @@
+
+@import '../../../styles/variables';
+table {
+  border: solid 1px $color-border-light;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  overflow: auto;
+
+  tbody td {
+    border-bottom: solid 1px $gray;
+    padding: 10px;
+  }
+}

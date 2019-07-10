@@ -1,0 +1,22 @@
+.hobby-form {
+    width: 100%;
+    display: flex;
+    .passion-dropdown {
+      flex: 1 0 0;
+    }
+    .input-hobby {
+      flex: 2 0 0;
+    }
+    .input-year {
+      flex: 1 0 0;
+    }
+  }
+@media screen and (max-width: 600px){
+    input{
+      min-width: 50px;
+    }
+    .hobby-form {
+        display: flex;
+        flex-direction: column;
+    }
+  }
